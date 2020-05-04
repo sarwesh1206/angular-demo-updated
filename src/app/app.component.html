@@ -1,10 +1,5 @@
 
- <ul class="nav nav-pills">
-  <li [class.active]="viewMode== 'map'"><a (click)="viewMode='map'">Home</a></li>
-  <li [class.active]="viewMode== 'view'"><a (click)="viewMode='view'">Page 1</a></li>
+ <ul >
+  <li *ngFor="let course of courses; even as isEven" >{{course.id}}<span *ngIf="isEven">(Even)</span></li>
+
 </ul>
-<div [ngSwitch] ="viewMode">
-  <div *ngSwitchCase="'map'"> Map view content</div>
-  <div *ngSwitchCase="'view'"> list view content</div>
-  <div *ngSwitchDefault> Default view</div>
-</div>

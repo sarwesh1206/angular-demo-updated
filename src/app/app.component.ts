@@ -6,6 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-demo-updated';
-  viewMode = "map"
+  courses =[
+    {id: "id1",
+      name: "course1"
+    },
+
+    {id: "id2",
+      name: "course2"
+    }
+  ]
 }
