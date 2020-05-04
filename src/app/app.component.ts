@@ -15,4 +15,7 @@ export class AppComponent {
       name: "course2"
     }
   ]
+  addButton(){
+    this.courses.push({id:"id3",name:"course3"})
+  }
 }
