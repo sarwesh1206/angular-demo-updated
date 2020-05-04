@@ -18,4 +18,8 @@ export class AppComponent {
   addButton(){
     this.courses.push({id:"id3",name:"course3"})
   }
+  removeClick(course){
+    let index = this.courses.indexOf(course);
+    this.courses.splice(index,1);
+  }
 }
