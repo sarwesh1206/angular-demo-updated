@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-
+import {FormGroup, FormControl, Validators} from '@angular/forms'
+import { UserNameValidators } from './username.validators';
 @Component({
   selector: 'signup-form',
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.css']
 })
-export class SignupFormComponent implements OnInit {
+export class SignupFormComponent {
 
-  constructor() { }
+ form = new FormGroup({
+   username: new FormControl('',
+  [Validators.required,Validators.minLength(3),UserNameValidators.isSpaceAllowed],
+  UserNameValidators.shouldBeUnique
+  ),
+   password: new FormControl('',Validators.required)
 
-  ngOnInit(): void {
-  }
+ });
 
+ get username(){
+  return  this.form.get('username')
+ }
 }
