@@ -18,4 +18,9 @@ export class ContactFormComponent implements OnInit {
     console.log(f.value)
   }
 
+  contactMethods =[
+    { id: 1,name: "email"},
+    {id:2, name:"phone"}
+  ];
+
 }
