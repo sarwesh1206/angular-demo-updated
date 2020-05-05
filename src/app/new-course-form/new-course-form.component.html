@@ -1,1 +1,11 @@
-<p>new-course-form works!</p>
+<form action="">
+  <input type="text" class="form-control" #topic
+  (keyup.enter) = "addTopic(topic)" >
+  <ul class="list-group">
+    <li *ngFor ="let topic of topics.controls" class="list-group-items"
+    (click) = "removeTopic(topic)">
+    {{topic.value}}
+  </li>
+
+  </ul>
+</form>
