@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { PostService } from './../post.service';
+import { AppError } from './../common/app-error';
+import { NotFoundError } from './../common/not-found-error';
 
 @Component({
   selector: 'posts',
@@ -28,9 +30,9 @@ posts: any[];
         post['id'] = response.json().id
         this.posts.splice(0,0,post);
       }),
-      (error: Response) => {
-        if(error.status == 400){
-          //this.form.setErrors(error.json())
+      (error: AppError) => {
+        if(error instanceof AppError){
+          alert("This post is already created")
 
         }
         else{
@@ -54,8 +56,8 @@ posts: any[];
         let index = this.posts.indexOf(post);
         this.posts.splice(index,1);
       }),
-      (error: Response) => {
-        if(error.status == 404)
+      (error: AppError) => {
+        if(error instanceof NotFoundError)
           alert("This post has already been deleted")
         else
           alert("Unexpected error occur");

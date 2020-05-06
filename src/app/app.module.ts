@@ -13,7 +13,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { PostsComponent } from './posts/posts.component';
 import { HttpModule } from '@angular/http';
 import { PostService } from './post.service';
-
+import { AppErrorHandler } from './common/app-error-handler';
+import { ErrorHandler } from '@angular/core';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { PostService } from './post.service';
 
   ],
   imports: [
-  BrowserModule,
+    BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpModule
