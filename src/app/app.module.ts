@@ -35,7 +35,8 @@ import { ErrorHandler } from '@angular/core';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [PostService],
+  providers: [PostService,
+    { provide: ErrorHandler,useClass: AppErrorHandler}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

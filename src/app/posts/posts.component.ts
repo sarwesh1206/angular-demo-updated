@@ -36,8 +36,7 @@ posts: any[];
 
         }
         else{
-          alert("Unexpected error occurs")
-          console.log(error);
+         throw error;
         }
 
       }
@@ -59,9 +58,7 @@ posts: any[];
       (error: AppError) => {
         if(error instanceof NotFoundError)
           alert("This post has already been deleted")
-        else
-          alert("Unexpected error occur");
-          console.log(error)
+        else throw  error;
       }
   }
 
