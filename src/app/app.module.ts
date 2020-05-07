@@ -15,9 +15,9 @@ import { HttpModule } from '@angular/http';
 import { PostService } from './post.service';
 import { AppErrorHandler } from './common/app-error-handler';
 import { ErrorHandler } from '@angular/core';
-// import { DataService } from './service/data.service';
+import { DataService } from './service/data.service';
 // import { DataServiceService } from './data-service.service';
-import { DataService } from './data.service';
+
 
 
 @NgModule({
@@ -38,7 +38,7 @@ import { DataService } from './data.service';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [PostService,DataService,
+  providers: [PostService,
     { provide: ErrorHandler,useClass: AppErrorHandler}],
   bootstrap: [AppComponent]
 })
