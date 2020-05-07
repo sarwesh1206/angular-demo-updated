@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw'
+import { AppError } from './common/app-error';
+import { BadInput } from './common/bad-input';
 import { Observable } from 'rxjs';
-import { AppError } from '../common/app-error';
-import { NotFoundError } from '../common/not-found-error';
-import { BadInput } from '../common/bad-input';
+import { NotFoundError } from './common/not-found-error';
+import { Http } from '@angular/http';
 
-
+@Injectable({
+  providedIn: 'root'
+})
 export class DataService {
-  constructor(private url: string,private http: Http) { }
 
+  constructor(private url: string,private http: Http) { }
   getAll(){
    return this.http.get(this.url)
   }
@@ -37,4 +37,5 @@ export class DataService {
       })
 
   }
+
 }

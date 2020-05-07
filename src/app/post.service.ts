@@ -6,43 +6,17 @@ import { Observable } from 'rxjs';
 import { AppError } from './common/app-error';
 import { NotFoundError } from './common/not-found-error';
 import { BadInput } from './common/bad-input';
+import { DataService } from './data.service';
+//  import { DataService } from './service/data.service';
 
-@Injectable({
+
+ @Injectable({
   providedIn: 'root'
 })
-export class PostService {
-  private url = 'https://jsonplaceholder.typicode.com/posts';
-  constructor(private http: Http) { }
-
-  getPosts(){
-   return this.http.get(this.url)
-  }
-  createPost(post){
-    return this.http.post(this.url,JSON.stringify(post))
-    .catch((error: AppError) =>{
-         if(error instanceof BadInput){
-           // this.form.setErrors(error.originalError)
-         // return Observable.throw(new BadInput(error.json()));
-      }
-      return Observable.throw(new AppError(error));
-    })
-  }
-  updatePost(post){
-    return this.http.patch(this.url + '/' + post.id, JSON.stringify({isRead: true}))
-    .catch(this.handleError)
-  }
-  deletePost(post){
-    return this.http.delete(this.url + '/' + 500)
-      .catch(this.handleError)
-
+export class PostService extends DataService {
+  // private url = 'https://jsonplaceholder.typicode.com/posts';
+  constructor(http: Http) {
+    super('https://jsonplaceholder.typicode.com/posts', http);
   }
 
-  private handleError(error: Response)
-  {
-    if(error.status == 404){
-      return Observable.throw(new NotFoundError())
-    }
-    return Observable.throw(new AppError(error));
-
-  }
 }
