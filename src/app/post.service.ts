@@ -29,15 +29,20 @@ export class PostService {
   }
   updatePost(post){
     return this.http.patch(this.url + '/' + post.id, JSON.stringify({isRead: true}))
+    .catch(this.handleError)
   }
   deletePost(post){
     return this.http.delete(this.url + '/' + 500)
-      .catch((error: Response) =>{
-        if(error.status == 404){
-          return Observable.throw(new NotFoundError())
-        }
-        return Observable.throw(new AppError(error));
-      })
+      .catch(this.handleError)
+
+  }
+
+  private handleError(error: Response)
+  {
+    if(error.status == 404){
+      return Observable.throw(new NotFoundError())
+    }
+    return Observable.throw(new AppError(error));
 
   }
 }
