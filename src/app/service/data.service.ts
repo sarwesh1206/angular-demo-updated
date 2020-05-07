@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw'
 import { Observable } from 'rxjs';
 import { AppError } from '../common/app-error';
@@ -13,9 +14,12 @@ export class DataService {
 
   getAll(){
    return this.http.get(this.url)
+    .map(response => response.json())
+    .catch(this.handleError);
   }
   create(resource){
     return this.http.post(this.url,JSON.stringify(resource))
+    .map(response => response.json())
     .catch((error: AppError) =>{
          if(error instanceof BadInput){
            // this.form.setErrors(error.originalError)
@@ -26,15 +30,21 @@ export class DataService {
   }
   update(resource){
     return this.http.patch(this.url + '/' + resource.id, JSON.stringify({isRead: true}))
+      .map(response => response.json())
+      .catch(this.handleError);
   }
   delete(resource){
     return this.http.delete(this.url + '/' + resource.id)
-      .catch((error: Response) =>{
-        if(error.status == 404){
-          return Observable.throw(new NotFoundError())
-        }
-        return Observable.throw(new AppError(error));
-      })
+    .map(response => response.json())
+    .catch(this.handleError);
+
+  }
+  private handleError(error: Response)
+  {
+    if(error.status == 404){
+      return Observable.throw(new NotFoundError())
+    }
+    return Observable.throw(new AppError());
 
   }
 }
