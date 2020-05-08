@@ -20,6 +20,7 @@ import { GithubFollowersComponent } from './github-followers/github-followers.co
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { GithubProfileComponent } from './github-profile/github-profile.component';
 // import { DataServiceService } from './data-service.service';
 
 
@@ -35,7 +36,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ChangePasswordComponent,
     PostsComponent,
     GithubFollowersComponent,
-    NavbarComponent
+    NavbarComponent,
+    GithubProfileComponent
 
   ],
   imports: [
@@ -45,7 +47,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HttpModule,
     RouterModule.forRoot([
       {path: '',component: HomeComponent},
-      {path: 'followers/:username',component:GithubFollowersComponent},
+      {path: 'followers/:id/:username',component:GithubProfileComponent},
       {path: 'followers',component:GithubFollowersComponent},
       {path: 'posts',component:PostsComponent},
       {path: '**',component:NotFoundComponent},
