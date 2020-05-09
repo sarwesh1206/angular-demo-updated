@@ -21,6 +21,7 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { GithubProfileComponent } from './github-profile/github-profile.component';
+import { ArchiveComponent } from './archive/archive.component';
 // import { DataServiceService } from './data-service.service';
 
 
@@ -37,7 +38,8 @@ import { GithubProfileComponent } from './github-profile/github-profile.componen
     PostsComponent,
     GithubFollowersComponent,
     NavbarComponent,
-    GithubProfileComponent
+    GithubProfileComponent,
+    ArchiveComponent,
 
   ],
   imports: [
@@ -50,6 +52,7 @@ import { GithubProfileComponent } from './github-profile/github-profile.componen
       {path: 'followers/:id/:username',component:GithubProfileComponent},
       {path: 'followers',component:GithubFollowersComponent},
       {path: 'posts',component:PostsComponent},
+      {path: 'archive/:year/:month',component: ArchiveComponent},
       {path: '**',component:NotFoundComponent},
     ])
   ],
